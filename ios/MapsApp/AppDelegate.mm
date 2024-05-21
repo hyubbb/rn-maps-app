@@ -2,11 +2,14 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import "react_native_config/ReactNativeConfig.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [GMSServices provideAPIKey:@"AIzaSyBf3ncdmBYQZp2zsLsPejjNHX2i5GyJXis"]; // add this line using the api key obtained from Google Console
+  NSString *apiKey = [ReactNativeConfig envFor:@"GOOGLE_MAP_API_KEY"]; // 환경 변수 가져오기
+  [GMSServices provideAPIKey:apiKey]; // Google Maps API 키 설정
+
   self.moduleName = @"MapsApp";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
